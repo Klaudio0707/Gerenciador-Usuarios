@@ -5,7 +5,7 @@ import {nivelUsuario}  from '../dto/nivel'
   tableName: 'usuarios',
   timestamps: true, 
 })
-export class Usuario extends Model  {
+export class UsuarioEntity extends Model  {
 @PrimaryKey
 @Column({
     type: DataType.UUID,
