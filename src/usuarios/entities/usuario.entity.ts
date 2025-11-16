@@ -1,4 +1,4 @@
-import {Table, Column, Model, PrimaryKey, DataType, Unique, AllowNull, CreatedAt, UpdatedAt} from 'sequelize-typescript'
+import {Table, Column, Model, PrimaryKey, DataType, AllowNull, CreatedAt, UpdatedAt} from 'sequelize-typescript'
 import {nivelUsuario}  from '../dto/nivel'
 
 @Table({
