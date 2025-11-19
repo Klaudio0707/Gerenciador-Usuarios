@@ -1,5 +1,6 @@
-import {Table, Column, Model, PrimaryKey, DataType, AllowNull, CreatedAt, UpdatedAt} from 'sequelize-typescript'
+import {Table, Column, Model, PrimaryKey, DataType, AllowNull, CreatedAt, UpdatedAt, HasMany} from 'sequelize-typescript'
 import {nivelUsuario}  from '../dto/nivel'
+import { EnderecoEntity } from 'src/enderecos/entities/endereco.entity';
 
 @Table({
   tableName: 'usuarios',
@@ -42,6 +43,9 @@ declare nivel: string
   @Column(DataType.DATEONLY)
   declare dataNascimento?: Date;
   
+  @HasMany(() => EnderecoEntity)
+  declare enderecos: EnderecoEntity[];
+
   @CreatedAt
   declare criadoEm: Date;
 

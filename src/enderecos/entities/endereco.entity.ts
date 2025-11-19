@@ -1,68 +1,73 @@
-import { Optional } from '@nestjs/common';
-import {Table, Column, Model, PrimaryKey, DataType, Unique, AllowNull, CreatedAt, UpdatedAt, ForeignKey} from 'sequelize-typescript'
+import {
+  Table,
+  Column,
+  Model,
+  PrimaryKey,
+  DataType,
+  CreatedAt,
+  UpdatedAt,
+  ForeignKey,
+  BelongsTo,
+} from 'sequelize-typescript';
 import { UsuarioEntity } from 'src/usuarios/entities/usuario.entity';
 
 @Table({
-    tableName: 'endereco',
-    timestamps: true, 
-  })
-
+  tableName: 'endereco',
+  timestamps: true,
+})
 export class EnderecoEntity extends Model {
-    
-
-@PrimaryKey
-@Column({
+  @PrimaryKey
+  @Column({
     type: DataType.UUID,
     defaultValue: DataType.UUIDV4,
-        })
-declare id: string;
+  })
+  declare id: string;
 
-@Column({
+  @Column({
     type: DataType.STRING,
-    unique: false,
     allowNull: false,
-})
- declare rua: string
+  })
+  declare rua: string;
 
- @Column({
+  @Column({
     type: DataType.STRING,
-    unique: false,
     allowNull: false,
- })
- declare numero:string
+  })
+  declare numero: string;
 
- @Column({
+  @Column({
     type: DataType.STRING,
-    unique: false,
-    allowNull: false,
-})
-  declare complemento: string;
+    allowNull: true,
+  })
+  declare complemento?: string;
 
-
- @Column({
+  @Column({
     type: DataType.STRING,
-    unique: false,
     allowNull: false,
-})
+  })
   declare bairro: string;
-  
+
   @Column({
     type: DataType.STRING,
-    unique: false,
     allowNull: false,
-})
+  })
   declare cidade: string;
-  
+
   @Column({
     type: DataType.STRING,
-    unique: false,
     allowNull: false,
-})
+  })
   declare estado: string;
 
   @ForeignKey(() => UsuarioEntity)
-  @Column(DataType.UUID)
+  @Column({
+    type: DataType.UUID,
+    allowNull: false,
+  })
   declare usuarioId: string;
+
+  @BelongsTo(() => UsuarioEntity)
+  declare usuario: UsuarioEntity;
 
   @Column({
     type: DataType.BOOLEAN,
