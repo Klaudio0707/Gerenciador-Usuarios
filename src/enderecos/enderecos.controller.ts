@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, HttpCode, HttpStatus } from '@nestjs/common';
 import { EnderecosService } from './enderecos.service';
 import { CreateEnderecoDto } from './dto/create-endereco.dto';
 import { UpdateEnderecoDto } from './dto/update-endereco.dto';
@@ -28,6 +28,7 @@ export class EnderecosController {
   }
 
   @Delete(':id')
+  @HttpCode(HttpStatus.NO_CONTENT)
   remove(@Param('id') id: string) {
     return this.enderecosService.remove(+id);
   }
